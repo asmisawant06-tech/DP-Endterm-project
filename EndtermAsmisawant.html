@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asmi Sawant | Portfolio (Pure CSS)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Oswald:wght@700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS Variables */
+        :root {
+            --dark-bg: #282424;
+            --tan-bg: #d4c8b8;
+            --text-color-dark: #ffffff;
+            --accent-color: #794c34;
+            --font-script: 'Dancing Script', cursive;
+            --font-body: 'Raleway', sans-serif;
+            --font-hero: 'Oswald', sans-serif;
+            --transition-speed: 0.4s;
+            --container-max-width: 1200px;
+            --gutter-width: 15px;
+        }
+
+        
+        /* 1. CUSTOM 12-COLUMN GRID SYSTEM */
+        
+
+        .container {
+            width: 100%;
+            max-width: var(--container-max-width);
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: var(--gutter-width);
+            padding-left: var(--gutter-width);
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: calc(-1 * var(--gutter-width));
+            margin-left: calc(-1 * var(--gutter-width));
+        }
+
+        .row > div[class*="col-"] {
+            padding-right: var(--gutter-width);
+            padding-left: var(--gutter-width);
+        }
+
+        .align-items-center { align-items: center; }
+        .justify-content-center { justify-content: center; }
+
+        /* Mobile First: Default to 100% width (12 columns) */
+        [class*="col-"] {
+            flex-grow: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Desktop Grid (mimics col-lg-x) */
+    @media (min-width: 992px) {
+            .col-lg-12 { width: 100%; }
+            .col-lg-8 { width: 66.666667%; max-width: 66.666667%; } /* Hero Text */
+            .col-lg-6 { width: 50%; max-width: 50%; } /* About Split, Project 1/2 Split */
+            .col-lg-4 { width: 33.333333%; max-width: 33.333333%; } /* Hero Image, Project 3 Moodboard */
+            .col-lg-2 { width: 16.666667%; max-width: 16.666667%; }
+        
+
+}
+    
+    
+            /* Nested Grid Adjustments for Project 3 Photos */
+            .col-6 { width: 50%; max-width: 50%; 
+            
+            }
+
+
+        body {
+            font-family: var(--font-body);
+            padding-top: 60px;
+            overflow-x: hidden;
+            background-color: var(--dark-bg);
+            color: var(--text-color-dark); /* Default text color */
+        }
+
+        /* Utility Classes */
+        .dark-bg { background-color: var(--dark-bg); }
+        .tan-bg { background-color: var(--tan-bg); }
+        .py-5 { padding-top: 6rem; padding-bottom: 6rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-5 { margin-bottom: 3rem; }
+        .text-center { text-align: center; }
+        .text-white { color: var(--text-color-dark); }
+        .d-flex { display: flex; }
+        .img-fluid { max-width: 100%; height: auto; }
+
+        /* Headings and Text */
+        .script-heading {
+            font-family: var(--font-script);
+            font-weight: 400;
+            line-height: 0.9;
+        }
+        .main-heading {
+            font-family: var(--font-hero);
+            font-size: 8vw;
+            -webkit-text-stroke: 2px var(--text-color-dark);
+            color: transparent;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.1em;
+        }
+        .design-text {
+            font-size: 4vw;
+            color: var(--accent-color);
+        }
+        .sub-heading-script {
+            font-family: var(--font-script);
+            font-size: 2.5rem;
+            color: var(--tan-bg);
+        }
+        .thank-you-text {
+            font-family: var(--font-hero);
+            color: var(--tan-bg);
+            letter-spacing: 0.1em;
+        }
+        .display-1 { font-size: 5rem; }
+        .display-3 { font-size: 3rem; }
+        .fw-bold { font-weight: 700; }
+        .mt-4 { margin-top: 1.5rem; }
+
+        
+
+        /* Navigation */
+        #main-nav {
+            background-color: var(--dark-bg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            z-index: 1030;
+        }
+        #main-nav .container-fluid {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .navbar-nav {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .nav-link {
+            color: var(--text-color-dark) !important;
+            font-weight: 700;
+            transition: color var(--transition-speed) ease;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            color: var(--tan-bg) !important;
+        }
+        .top-accent-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        /* Hide Toggler on desktop screens */
+        .navbar-toggler { display: none; }
+        @media (max-width: 991.98px) {
+            .navbar-nav { flex-direction: column; text-align: center; }
+            .navbar-toggler { display: block; }
+           
+            #navbarNav { display: block !important; }
+        }
+
+
+        /* Contact Button Interaction */
+        .btn-contact {
+            background-color: var(--tan-bg);
+            color: var(--dark-bg);
+            font-weight: 700;
+            border: 2px solid var(--tan-bg);
+            border-radius: 50px;
+            transition: all var(--transition-speed) ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0.75rem 1.5rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-contact:hover {
+            background-color: var(--dark-bg);
+            color: var(--tan-bg);
+            border-color: var(--tan-bg);
+            transform: translateY(-2px);
+        }
+        .w-100 { width: 100%; }
+        .g-3 { margin: -0.75rem; } /* Custom gutter spacing */
+        .g-3 > [class*="col"] { padding: 0.75rem; }
+
+       
+        .project-collage:hover, .hover-lift:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            justify-content: right;
+        }
+        
+
+        .bottom-strip {
+            height: 50px;
+        }
+        @media (min-width: 992px) {
+    .text-col-left { 
+        order: 0; 
+    }
+    .image-col-right {
+        order: 1; 
+    }
+    .project3-moodboard-col {
+        order: 1; 
+    }
+    .project3-group-project-col {
+        order: 0; 
+    }
+}
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+
+        @media (max-width: 991.98px) {
+            .main-heading { font-size: 15vw; letter-spacing: 0.15em; }
+            .design-text { font-size: 6vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="main-nav">
+        <div class="container-fluid justify-content-center">
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link px-4" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-4" href="#about">About me</a></li>
+                    <li class="nav-item"><a class="nav-link px-4" href="#project1">Project 1</a></li>
+                    <li class="nav-item"><a class="nav-link px-4" href="#project2">Project 2</a></li>
+                    <li class="nav-item"><a class="nav-link px-4" href="#project3">Project 3</a></li>
+                    <li class="nav-item"><a class="nav-link px-4" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="top-accent-line"></div>
+    </nav>
+
+    <section id="home" class="tan-bg d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-8 text-center hero-text-area">
+                    <h1 class="display-1 fw-bold main-heading animate-fade-in">PORTFOLIO</h1>
+                    <p class="script-heading design-text animate-fade-in delay-1">design</p>
+                </div>
+               <div class="col-12 col-lg-8 text-center hero-text-area text-col-left">
+    ...
+</div>
+<div class="col-12 col-lg-4 d-flex justify-content-center animate-fade-in delay-2 image-col-right">
+    <img src="C:\Users\Asmi\OneDrive\Desktop\Digital Prototyping SY\End Term Portfolio website\images\greeting asmi.png" alt="Asmi Character" class="img-fluid character-img">
+</div>
+    </section>
+
+    <section id="about" class="dark-bg py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 animate-fade-in-up">
+                    <h2 class="script-heading display-1 text-white mb-4">About me</h2>
+                    <h3 class="fw-bold text-white mb-3">Hi! I'm Asmi Sawant.</h3>
+                    <p class="body-text text-white">Design has always fascinated me. The words 'create' and 'design' have always sparked a sense of enthusiasm and excitement within me. From an early age, I always had a creative characteristic which I feel is most dominant. For many years, I have enjoyed designing flyers, invitation cards, coming up with creative campaign concepts and capturing moments.</p>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-xl-end animate-fade-in-up delay-1">
+                    <img src="C:\Users\Asmi\OneDrive\Desktop\Digital Prototyping SY\End Term Portfolio website\images\sitting asmi.png" alt="Asmi Designing" class="img-fluid desk-character-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project1" class="dark-bg py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-5 animate-fade-in-up">
+                    <h2 class="script-heading display-1 text-white mb-2">Project 1</h2>
+                    <h3 class="sub-heading-script">social media graphic design posts</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 body-text text-white animate-fade-in-up">
+                    <p>I have worked with Girl Up which was founded by **UN foundation** at my Jr. College which was an amazing opportunity for me to be able to contribute to **equality, and women's mental and physical health awareness through social media.**</p>
+                    <p>I have also worked within the Finanzas Club, Creatives Team at Smt. Sulochana Devi Singhania Jr. College, I was able to explore different ways of communicating through social media and I was able to see how various softwares were used to develop banners, social media posts, reels and décor.</p>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-center align-items-center animate-fade-in-up delay-1">
+                    <img src="C:\Users\Asmi\OneDrive\Desktop\Digital Prototyping SY\End Term Portfolio website\images\instaposts.png" alt="Project 1 Social Media Posts" class="img-fluid project-collage hover-lift">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project2" class="dark-bg py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-5 animate-fade-in-up">
+                    <h2 class="script-heading display-1 text-white mb-2">Project 2</h2>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 d-flex justify-content-xxl-center animate-fade-in-up">
+                </div>
+                <div class="col-lg-6 d-flex flex-column align-items-center animate-fade-in-up delay-1">
+                    <img src="C:\Users\Asmi\OneDrive\Desktop\Digital Prototyping SY\End Term Portfolio website\images\bookimgs.png" alt="Project 2 Final" class="img-fluid project-collage hover-lift">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project3" class="dark-bg py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12 mb-5 animate-fade-in-up">
+                    <h2 class="script-heading display-1 text-white mb-2">Project 3</h2>
+                </div>
+            </div>
+            <div class="row align-items-start">
+                <div class="col-lg-4 mb-4 mb-lg-0 animate-fade-in-up">
+                    <h3 class="sub-heading-script">product photography</h3>
+                </div>
+                <div class="col-lg-8 d-flex flex-column align-items-end animate-fade-in-up delay-1">
+                    <div class="row g-3">
+                        <div class="col-lg-12"><img src="C:\Users\Asmi\OneDrive\Desktop\Digital Prototyping SY\End Term Portfolio website\images\project 3 ss.png" alt="Photo 3" class="img-fluid hover-lift"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="dark-bg py-5">
+        <div class="container py-5 text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 animate-fade-in-up">
+                    <h2 class="script-heading display-3 text-white">lets work!</h2>
+                    <h1 class="display-1 thank-you-text">ThAnK yOu</h1>
+                    <br>
+                    <div class="row justify-content-center g-3 mt-4">
+                        <div class="col-lg-6">
+                            <a href="https://www.linkedin.com/in/asmi-sawant-7a107a2a1" class="btn btn-contact w-100" target="_blank">LinkedIn link: www.linkedin.com/in/asmi-sawant-7a107a2a1</a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="tel:8291945877" class="btn btn-contact w-100">82919 45877</a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="mailto:asmisawant06@gmail.com" class="btn btn-contact w-100">asmisawant06@gmail.com</a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="mailto:asmi.sawant.bdes2028@atlaskilletch.university" class="btn btn-contact w-100">asmi.sawant.bdes2028@atlaskilletch.university</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tan-bg bottom-strip"></div>
+
+    </body>
+</html>
